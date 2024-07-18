@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather App</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {% load static %}
+    <script src="{% static 'scripts/autocomplete.js' %}"></script>
+</head>
+<body>
+    <h1>Weather Forecast</h1>
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" id="city" name="city" placeholder="Enter city" autocomplete="off">
+        <button type="submit">Get Weather</button>
+    </form>
+    {% if error_message %}
+        <h3 style="color: red;">{{ error_message }}</h3>
+    {% endif %}
+    <div id="weather">
+        {% if weather_data %}
+            <h2>Погода в {{ city }}</h2>
+            <h2>Координаты:</h2>
+            <p>Широта: {{ weather_data.latitude }}</p>
+            <p>Долгота: {{ weather_data.longitude }}</p>
+            <p>Температура: {{ weather_data.hourly.temperature_2m.0 }}°C</p>
+        {% endif %}
+        {% if last_city %}
+            <p>Последний запрос для: {{ last_city }}</p>
+        {% endif %}
+        {% if history %}
+            <p>История ваших запросов:</p>
+            <ul>
+                {% for item in history %}
+                    <li>{{ item.city_name }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
