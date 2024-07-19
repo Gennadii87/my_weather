@@ -26,7 +26,10 @@
 Обновите менеджер пакетов (при необходимости):
 `python -m pip install --upgrade pip` <br/>
 
-Выполнить миграции:
+Создайте миграции:
+`python manage.py makemigrations` <br/>
+
+Выполните миграции:
 `python manage.py migrate` <br/>
 
 Запустить проект:
@@ -34,6 +37,10 @@
 
 <hr/>
 
+<h2>Тесты</h2>
+Запустить тесты:
+`python manage.py test weather` <br/>
+<hr/>
 <h2>API</h2>
 
 ![API](/image/api.png)
