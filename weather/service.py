@@ -1,5 +1,6 @@
 import os
 import requests
+from cache_memoize import cache_memoize
 
 import plotly.graph_objects as go
 from plotly.io import to_html
@@ -23,6 +24,7 @@ def get_coordinates(city_name):
     return {'latitude': location.latitude, 'longitude': location.longitude}
 
 
+@cache_memoize(30)
 def get_weather(city):
     try:
         coordinates = get_coordinates(city)
@@ -34,10 +36,9 @@ def get_weather(city):
         "latitude": f"{coordinates['latitude']}",
         "longitude": f"{coordinates['longitude']}",
         "timezone": "GMT",
-        "timezone_abbreviation": "GMT",
         "hourly": "temperature_2m",
-        "past_days": 1,
-        "forecast_days": 1
+        "past_days": 0,
+        "forecast_days": 3
     }
     response = requests.get(url, params=params)
     return response.json(), None

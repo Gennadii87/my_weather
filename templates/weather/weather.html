@@ -5,6 +5,8 @@ My Weather
 {% endblock title %}
 {% block content %}
     <h1>Прогноз погоды в любом городе</h1>
+    <hr/>
+    <h2>Поиск</h2>
     <form method="post" class="weather_form">
         {% csrf_token %}
         <input type="text" id="city" name="city" placeholder="Введите название города" autocomplete="off">
@@ -16,25 +18,35 @@ My Weather
     <div id="weather">
         {% if weather_data %}
             <h2>Погода в {{ city }}</h2>
+            <div class="container_temperature">
+                <p>Температура сейчас:</p>
+                <p style="color: red;">{{ closest_temperature }}°C</p>
+                <div class="date_time">{{ now }}</div>
+            </div>
             <h2>Координаты:</h2>
-            <p>Широта: {{ weather_data.latitude }}</p>
-            <p>Долгота: {{ weather_data.longitude }}</p>
-            <p>Дата и время: {{ now }}</p>
-            <p>Температура сейчас: {{ closest_temperature }}°C</p>
+            <div class="container_temperature">
+                <p>Широта:</p>
+                <p style="color: red;">{{ weather_data.latitude }}</p>
+                <p>Долгота:</p>
+                <p style="color: red;">{{ weather_data.longitude }}</p>
+            </div>
 
         {% include 'chart_partial.html' %}
 
         {% endif %}
         {% if last_city %}
-            <p>Последний запрос для: {{ last_city }}</p>
+        <h2>Последний раз вы смотрели:</h2>
+        <div class="container_history">
+            <div class="block_history">{{ last_city }}</div>
+        </div>
         {% endif %}
         {% if history %}
-            <h3>История ваших запросов:</h3>
-            <ul>
+            <h2>История ваших запросов:</h2>
+            <div class="container_history">
                 {% for item in history %}
-                    <li>{{ item.city_name }}</li>
+                    <div class="block_history">{{ item.city_name }}</div>
                 {% endfor %}
-            </ul>
+            </div>
         {% endif %}
     </div>
 {% endblock content %}
