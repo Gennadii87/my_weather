@@ -12,7 +12,6 @@ from django.db.models import Sum
 import plotly.graph_objects as go
 import pandas as pd
 from plotly.io import to_html
-from datetime import datetime
 
 
 @csrf_exempt

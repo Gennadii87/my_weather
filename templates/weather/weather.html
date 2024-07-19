@@ -5,7 +5,7 @@ My Weather
 {% endblock title %}
 {% block content %}
     <h1>Прогноз погоды в любом городе</h1>
-    <form method="post">
+    <form method="post" class="weather_form">
         {% csrf_token %}
         <input type="text" id="city" name="city" placeholder="Введите название города" autocomplete="off">
         <button type="submit">получить данные</button>
@@ -29,7 +29,7 @@ My Weather
             <p>Последний запрос для: {{ last_city }}</p>
         {% endif %}
         {% if history %}
-            <p>История ваших запросов:</p>
+            <h3>История ваших запросов:</h3>
             <ul>
                 {% for item in history %}
                     <li>{{ item.city_name }}</li>
