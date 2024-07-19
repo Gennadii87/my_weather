@@ -1,0 +1,10 @@
+version: '3.8'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: my_weather_container
+    ports:
+      - "8000:80"
