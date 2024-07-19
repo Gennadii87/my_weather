@@ -1,0 +1,7 @@
+venv
+*.pyc
+.idea
+db.sqlite3
+README.md
+.dockerignore
+.gitignore
