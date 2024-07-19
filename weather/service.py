@@ -24,8 +24,18 @@ def get_weather(city):
         coordinates = get_coordinates(city)
     except CityNotFoundError as e:
         return None, str(e)
-    url = f"https://api.open-meteo.com/v1/forecast?latitude={coordinates['latitude']}&longitude={coordinates['longitude']}&hourly=temperature_2m"
-    response = requests.get(url)
+    url = f"https://api.open-meteo.com/v1/forecast"
+
+    params = {
+        "latitude": f"{coordinates['latitude']}",
+        "longitude": f"{coordinates['longitude']}",
+        "timezone": "GMT",
+        "timezone_abbreviation": "GMT",
+        "hourly": "temperature_2m",
+        "past_days": 1,
+        "forecast_days": 1
+    }
+    response = requests.get(url, params=params)
     return response.json(), None
 
 

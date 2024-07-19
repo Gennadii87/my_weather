@@ -19,7 +19,11 @@ My Weather
             <h2>Координаты:</h2>
             <p>Широта: {{ weather_data.latitude }}</p>
             <p>Долгота: {{ weather_data.longitude }}</p>
-            <p>Температура: {{ weather_data.hourly.temperature_2m.0 }}°C</p>
+            <p>Дата и время: {{ now }}</p>
+            <p>Температура сейчас: {{ closest_temperature }}°C</p>
+
+        {% include 'chart_partial.html' %}
+
         {% endif %}
         {% if last_city %}
             <p>Последний запрос для: {{ last_city }}</p>
