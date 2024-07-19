@@ -2,12 +2,15 @@ import json
 
 from django.shortcuts import render
 from django.http import JsonResponse
-from .api import get_weather
+from django.views.decorators.csrf import csrf_exempt
+
+from .service import get_weather, create_interactive_temperature_plot
 from .models import CitySearch
 from django.views.decorators.http import require_GET
 from django.db.models import Sum
 
 
+@csrf_exempt
 def weather_view(request):
     if request.method == 'POST':
         city = request.POST.get('city')
@@ -16,7 +19,11 @@ def weather_view(request):
             return render(request, 'weather/weather.html',
                           {'error_message': 'Введите название города'})
 
-        weather_data = get_weather(city)
+        weather_data, error_message = get_weather(city)
+
+        if error_message:
+            return render(request, 'weather/weather.html', {'error_message': error_message})
+
         session_key = request.session.session_key
         if not session_key:
             request.session.create()
@@ -35,11 +42,16 @@ def weather_view(request):
         history_response = search_history(request)
         history_data = json.loads(history_response.content)
 
+        temperature_graph, now, closest_temperature = create_interactive_temperature_plot(weather_data)
+
         return render(request, 'weather/weather.html',
                       {
                                 'weather_data': weather_data,
                                 'city': city,
-                                'history': history_data.get('history')
+                                'history': history_data.get('history'),
+                                'temperature_graph': temperature_graph,
+                                'now': now,
+                                'closest_temperature': closest_temperature
                             })
 
     last_city = request.session.get('last_city')
@@ -55,18 +67,6 @@ def search_history(request):
 def last_search(request):
     last_city = request.session.get('last_city')
     return JsonResponse({'last_city': last_city})
-
-
-@require_GET
-def autocompletion(request):
-    query = request.GET.get('q', '')
-    if len(query) > 1:
-        cities = CitySearch.objects.filter(city_name__icontains=query).values_list('city_name', flat=True)
-        autocomplete = list(cities)
-    else:
-        autocomplete = []
-
-    return JsonResponse({'autocomplete': autocomplete})
 
 
 @require_GET

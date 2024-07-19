@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            {% block title %}
+
+            {% endblock title %}
+        </title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        {% load static %}
+        <script src="{% static 'scripts/autocomplete.js' %}"></script>
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+        <link rel="icon" type="image/x-icon" href="{% static 'favicon/favicon.png' %}">
+    </head>
+    <body>
+        <main>
+            <div class="content">
+                {% block content %}
+
+                {% endblock %}
+            </div>
+        </main>
+    </body>
+</html>

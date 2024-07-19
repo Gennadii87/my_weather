@@ -1,0 +1,99 @@
+* {
+    box-sizing: border-box;
+}
+@media screen and (min-width: 800px) {
+    html {
+        margin: 0;
+        padding: 20px 60px;
+    }
+}
+
+@media screen and (max-width: 799px) {
+    html {
+        margin: 0;
+        padding: 5px;
+    }
+}
+
+body {
+    background-color: #163E6C;
+    font-family: "PT Astra Sans Regular", Helvetica, Arial, sans-serif;
+    color: #cccccc;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.weather_form form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .weather_form label {
+    margin-bottom: 10px;
+  }
+  
+  .weather_form > input {
+    padding: 8px;
+    width: 100%; /* ширина поля минус внутренние отступы */
+    height: 50px;
+    font-size: 35px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .weather_form > button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    background-color: #007bff;
+    font-size: 25px;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .weather_form button:hover {
+    background-color: #0056b3;
+  }
+
+  .container_history {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+    flex-direction: row;
+    background-color: #0056b3;
+    gap: 10px;
+  }
+  .block_history {
+    background-color: rgb(23, 51, 109);
+    border: 2px solid;
+    border-radius: 5px;
+    margin: 7px;
+    padding: 25px;
+    color: #fff;
+    font-size: 20px;
+  }
+  .block_history:hover {
+    background-color: rgb(11, 27, 59);
+  }
+  .container_temperature {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .container_temperature > p {
+    font-size: 22px;
+    margin: 0;
+    padding: 0;
+  }
+  .date_time {
+    padding: 10px;
+    font-size: 20px;
+    background-color: #000000;
+    color:  #c7ffa1;
+    border-radius: 7px;
+  }
