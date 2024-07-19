@@ -38,8 +38,10 @@
 <hr/>
 
 <h2>Тесты</h2>
+
 Запустить тесты:
 `python manage.py test weather` <br/>
+
 <hr/>
 <h2>API</h2>
 
