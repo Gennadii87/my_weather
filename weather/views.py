@@ -2,7 +2,7 @@ import json
 
 from django.shortcuts import render
 from django.http import JsonResponse
-from .api import get_weather
+from .service import get_weather
 from .models import CitySearch
 from django.views.decorators.http import require_GET
 from django.db.models import Sum
