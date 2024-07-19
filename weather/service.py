@@ -32,7 +32,6 @@ def get_weather(city):
 @require_GET
 def autocompletion(request):
     query = request.GET.get('q', '')
-    autocomplete = []
 
     if len(query) > 1:
         cities = CitySearch.objects.filter(city_name__icontains=query).values_list('city_name', flat=True)
