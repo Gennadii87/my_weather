@@ -4,14 +4,10 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-from .service import get_weather
+from .service import get_weather, create_interactive_temperature_plot
 from .models import CitySearch
 from django.views.decorators.http import require_GET
 from django.db.models import Sum
-
-import plotly.graph_objects as go
-import pandas as pd
-from plotly.io import to_html
 
 
 @csrf_exempt
@@ -60,39 +56,6 @@ def weather_view(request):
 
     last_city = request.session.get('last_city')
     return render(request, 'weather/weather.html', {'last_city': last_city})
-
-
-def create_interactive_temperature_plot(weather_data):
-
-    df = pd.DataFrame({
-        'time': pd.to_datetime(weather_data['hourly']['time']),
-        'temperature': weather_data['hourly']['temperature_2m']
-    })
-
-    now = pd.to_datetime('now')
-
-    # Находим ближайшее время и соответствующую температуру
-    closest_time_index = df['time'].sub(now).abs().idxmin()
-    closest_temperature = df['temperature'].iloc[closest_time_index]
-
-    fig = go.Figure()
-    fig.add_vline(x=now, line=dict(color="black", width=2, dash="dash"))
-    fig.add_trace(go.Scatter(x=df['time'], y=df['temperature'], mode='lines+markers', name='Температура'))
-    fig.add_annotation(
-        x=now,
-        y=max(df['temperature']),
-        text="Текущее время",
-        showarrow=True,
-        arrowhead=5,
-        ax=-60,
-        ay=-40,
-        font=dict(color="red")
-    )
-    fig.update_layout(title='Температура от времени', xaxis_title='Время', yaxis_title='Температура (°C)')
-
-    temperature_graph = to_html(fig, full_html=False)
-
-    return temperature_graph, now, closest_temperature
 
 
 def search_history(request):

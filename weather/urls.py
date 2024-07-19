@@ -4,6 +4,7 @@ from .service import autocompletion
 
 urlpatterns = [
     path('', views.weather_view, name='weather'),
+    path('last/',  views.last_search, name='last'),
     path('history/',  views.search_history, name='history'),
     path('autocompletion/', autocompletion, name='autocompletion'),
     path('request_count/', views.city_request_count, name='request_count'),
