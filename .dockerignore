@@ -6,4 +6,5 @@ README.md
 .dockerignore
 .gitignore
 Makefile
+weather/migrations/
 image

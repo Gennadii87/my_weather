@@ -1,4 +1,5 @@
 venv
 *.pyc
 .idea
+weather/migrations/
 db.sqlite3
