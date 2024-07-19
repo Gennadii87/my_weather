@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>
+            {% block title %}
+
+            {% endblock title %}
+        </title>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        {% load static %}
+        <script src="{% static 'scripts/autocomplete.js' %}"></script>
+    <style>
+        .autocomplete-suggestions {
+            border: 1px solid #ccc;
+            max-height: 150px;
+            overflow-y: auto;
+            position: absolute;
+            background-color: white;
+            z-index: 1000;
+            width: calc(100% - 22px);
+        }
+        .autocomplete-suggestion {
+            padding: 8px;
+            cursor: pointer;
+        }
+        .autocomplete-suggestion:hover {
+            background-color: #eee;
+        }
+    </style>
+    </head>
+    <body>
+        <main>
+            <div class="content">
+                {% block content %}
+
+                {% endblock %}
+            </div>
+        </main>
+    </body>
+</html>

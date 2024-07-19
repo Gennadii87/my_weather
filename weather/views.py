@@ -16,7 +16,11 @@ def weather_view(request):
             return render(request, 'weather/weather.html',
                           {'error_message': 'Введите название города'})
 
-        weather_data = get_weather(city)
+        weather_data, error_message = get_weather(city)
+
+        if error_message:
+            return render(request, 'weather/weather.html', {'error_message': error_message})
+
         session_key = request.session.session_key
         if not session_key:
             request.session.create()

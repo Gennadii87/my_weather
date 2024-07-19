@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Weather App</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    {% load static %}
-    <script src="{% static 'scripts/autocomplete.js' %}"></script>
-</head>
-<body>
-    <h1>Weather Forecast</h1>
+{% extends 'default.html' %}
+
+{% block title %}
+My Weather
+{% endblock title %}
+{% block content %}
+    <h1>Прогноз погоды в любом городе</h1>
     <form method="post">
         {% csrf_token %}
-        <input type="text" id="city" name="city" placeholder="Enter city" autocomplete="off">
-        <button type="submit">Get Weather</button>
+        <input type="text" id="city" name="city" placeholder="Введите название города" autocomplete="off">
+        <button type="submit">получить данные</button>
     </form>
     {% if error_message %}
         <h3 style="color: red;">{{ error_message }}</h3>
@@ -36,5 +33,4 @@
             </ul>
         {% endif %}
     </div>
-</body>
-</html>
+{% endblock content %}
