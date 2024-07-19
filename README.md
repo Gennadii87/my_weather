@@ -1,8 +1,11 @@
 # MY_WEATHER
 <h2>Приложение для просмотра погоды в разных городах</h2><br/>
+
 ![weather](/image/weather.png)
+<br>
 ![history](/image/history.png)
 <br>
+
 Основные функции:
 <pre>
     - показывает температуру в промежутке времени
