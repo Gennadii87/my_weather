@@ -5,3 +5,6 @@ db.sqlite3
 README.md
 .dockerignore
 .gitignore
+Makefile
+weather/migrations/
+image
