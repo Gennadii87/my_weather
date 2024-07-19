@@ -1,8 +1,11 @@
 # MY_WEATHER
 <h2>Приложение для просмотра погоды в разных городах</h2><br/>
+
 ![weather](/image/weather.png)
+<br>
 ![history](/image/history.png)
 <br>
+
 Основные функции:
 <pre>
     - показывает температуру в промежутке времени
@@ -23,7 +26,10 @@
 Обновите менеджер пакетов (при необходимости):
 `python -m pip install --upgrade pip` <br/>
 
-Выполнить миграции:
+Создайте миграции:
+`python manage.py makemigrations` <br/>
+
+Выполните миграции:
 `python manage.py migrate` <br/>
 
 Запустить проект:
@@ -31,9 +37,15 @@
 
 <hr/>
 
+<h2>Тесты</h2>
+Запустить тесты:
+`python manage.py test weather` <br/>
+<hr/>
 <h2>API</h2>
+
 ![API](/image/api.png)
 <br>
+
 Документация api статистики количества запросов по городам `http://127.0.0.1:8000/swagger-ui/#/`
 <hr/>
 <h2>Запуск через Docker</h2>
