@@ -2,12 +2,15 @@ import json
 
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+
 from .service import get_weather
 from .models import CitySearch
 from django.views.decorators.http import require_GET
 from django.db.models import Sum
 
 
+@csrf_exempt
 def weather_view(request):
     if request.method == 'POST':
         city = request.POST.get('city')
@@ -59,18 +62,6 @@ def search_history(request):
 def last_search(request):
     last_city = request.session.get('last_city')
     return JsonResponse({'last_city': last_city})
-
-
-@require_GET
-def autocompletion(request):
-    query = request.GET.get('q', '')
-    if len(query) > 1:
-        cities = CitySearch.objects.filter(city_name__icontains=query).values_list('city_name', flat=True)
-        autocomplete = list(cities)
-    else:
-        autocomplete = []
-
-    return JsonResponse({'autocomplete': autocomplete})
 
 
 @require_GET
