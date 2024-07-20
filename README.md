@@ -62,7 +62,3 @@
 
 Запуск в фоновом режиме <pre> `docker-compose up -d` </pre>
 Остановка с удалением томов <pre> `docker-compose down -v` </pre> 
-
-
-
-
