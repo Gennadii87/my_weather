@@ -54,7 +54,7 @@
 Документация api http://127.0.0.1:8000/swagger-ui/#/
 <hr/>
 <h2>Запуск через Docker</h2>
-Разверните Docker на своей Ubuntu, установите пакет <code>sudo apt install make</code><br/>
+Разверните Docker на своей Ubuntu, установите пакет <pre>sudo apt install make</pre>
 
 *make* это короткие команды которые прописаны в файле `Makefile`, пример команды в терминале: <pre>`make build`</pre>
 
