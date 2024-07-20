@@ -22,45 +22,43 @@
 <h2>Развертывание локально</h2>
 Установка зависимостей:
 
-`pip install -r .\requirements.txt` <br/>
+    pip install -r .\requirements.txt
 
 Обновите менеджер пакетов (при необходимости):
-`python -m pip install --upgrade pip` <br/>
+
+    python -m pip install --upgrade pip
 
 Создайте миграции:
-`python manage.py makemigrations` <br/>
+
+    python manage.py makemigrations
 
 Выполните миграции:
-`python manage.py migrate` <br/>
+
+    python manage.py migrate
 
 Запустить проект:
-`python manage.py runserver` <br/>
+    <pre> python manage.py runserver </pre>
 
 <hr/>
-
 <h2>Тесты</h2>
-
 Запустить тесты:
-`python manage.py test weather` <br/>
+
+    python manage.py test weather
 
 <hr/>
 <h2>API</h2>
 
 ![API](/image/api.png)
-<br>
 
-Документация api статистики количества запросов по городам `http://127.0.0.1:8000/swagger-ui/#/`
+<br>
+Документация api http://127.0.0.1:8000/swagger-ui/#/
 <hr/>
 <h2>Запуск через Docker</h2>
-Разверните Docker на своей Ubuntu, установите пакет <code>sudo apt install make</code><br/>
+Разверните Docker на своей Ubuntu, установите пакет <pre>sudo apt install make</pre>
 
 *make* это короткие команды которые прописаны в файле `Makefile`, пример команды в терминале: <pre>`make build`</pre>
 
 <h3>Развертывание через docker-compose</h3>
 
-Запуск в фоновом режиме `docker-compose up -d` <br/>
-Остановка с удалением томов `docker-compose down -v` <br/>
-
-
-
-
+Запуск в фоновом режиме <pre> `docker-compose up -d` </pre>
+Остановка с удалением томов <pre> `docker-compose down -v` </pre> 
