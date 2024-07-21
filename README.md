@@ -40,7 +40,7 @@
 
     python manage.py runserver
  
-*Добавлена запуск через web сервер waitress (по умолчанию установлен порт 8001)*
+*Добавлен запуск через web сервер waitress (по умолчанию установлен порт 8001)*
     
     python waitress_server.py 
 
