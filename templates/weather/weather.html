@@ -30,7 +30,11 @@ My Weather
                 <p>Долгота:</p>
                 <p style="color: red;">{{ weather_data.longitude }}</p>
             </div>
-
+           <h2>Координаты:</h2>
+            <div class="container_temperature">
+                <p>Подробная локация:</p>
+                <p>{{ weather_data.location }}</p>
+            </div>
         {% include 'chart_partial.html' %}
 
         {% endif %}
