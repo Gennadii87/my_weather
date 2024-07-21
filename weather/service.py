@@ -19,6 +19,7 @@ class CityNotFoundError(Exception):
 def get_coordinates(city_name):
     geolocator = Nominatim(user_agent='weather_app')
     location = geolocator.geocode(city_name)
+    print(location)
     if location is None:
         raise CityNotFoundError(f'Город «{city_name}» не найден.')
     return {'latitude': location.latitude, 'longitude': location.longitude}
