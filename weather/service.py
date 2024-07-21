@@ -21,13 +21,14 @@ def get_coordinates(city_name):
     location = geolocator.geocode(city_name)
     if location is None:
         raise CityNotFoundError(f'Город «{city_name}» не найден.')
-    return {'latitude': location.latitude, 'longitude': location.longitude}
+    return {'latitude': location.latitude, 'longitude': location.longitude, 'location': location}
 
 
 @cache_memoize(30)
 def get_weather(city):
     try:
         coordinates = get_coordinates(city)
+        location = coordinates.get('location')
     except CityNotFoundError as e:
         return None, str(e)
     url = f"https://api.open-meteo.com/v1/forecast"
@@ -40,8 +41,12 @@ def get_weather(city):
         "past_days": 0,
         "forecast_days": 3
     }
+
     response = requests.get(url, params=params)
-    return response.json(), None
+    weather_data = response.json()
+    weather_data['location'] = location
+
+    return weather_data, None
 
 
 @require_GET

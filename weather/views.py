@@ -51,7 +51,7 @@ def weather_view(request):
                                 'history': history_data.get('history'),
                                 'temperature_graph': temperature_graph,
                                 'now': now,
-                                'closest_temperature': closest_temperature
+                                'closest_temperature': closest_temperature,
                             })
 
     last_city = request.session.get('last_city')
