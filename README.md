@@ -37,7 +37,12 @@
     python manage.py migrate
 
 Запустить проект:
-    <pre> python manage.py runserver </pre>
+
+    python manage.py runserver
+ 
+*Добавлена запуск через web сервер waitress (по умолчанию установлен порт 8001)*
+    
+    python waitress_server.py 
 
 <hr/>
 <h2>Тесты</h2>
